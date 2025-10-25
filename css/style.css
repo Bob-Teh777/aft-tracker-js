@@ -1,0 +1,164 @@
+html, body {
+    margin: 0px;
+    background-color: rgb(184, 184, 184);
+}
+
+.small {
+    font-size: 10px;
+}
+
+#main-header {
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    margin: 0px;
+    background-image: url("../assets/headerImage.png");
+    background-color: rgba(70, 39, 158, 0.664);
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+p {
+    font-family: "Montserrat", sans-serif;
+}
+
+accesssubmit {
+    width: 20%;
+    background-color: rgba(19, 130, 117, 1);
+    border-color: rgb(0 0 0);
+    color: rgba(255, 255, 255, 1);
+    font-family: Montserrat, sans-serif;
+    font-size: 10pt;
+    line-height: normal;
+    border-radius: 5px;
+    padding: 5px;
+    float: right;
+    transition: background-color 1s;
+}
+
+#accesssubmit {
+    width: 25%;
+    float: right;
+}
+
+#codeswitch {
+    width: 100%;
+}
+
+#openkahoot {
+    width: 100%;
+}
+
+button {
+    background-color: rgba(19, 130, 117, 1);
+    border-color: rgb(0 0 0);
+    color: rgba(255, 255, 255, 1);
+    font-family: Montserrat, sans-serif;
+    font-size: 10pt;
+    line-height: normal;
+    border-radius: 5px;
+    padding: 5px;
+    transition: background-color 1s;
+}
+
+.formdiv {
+    display: flex;
+}
+
+input {
+    padding: 5px;
+    flex-grow: 1;
+    width: 70%;
+    flex-wrap: nowrap;
+}
+
+button:hover, #accesssubmit:hover {
+    background-color: rgb(71, 194, 180);
+    transition: background-color 0.5s;
+}
+
+.body-content {
+    margin: 12px;
+}
+
+#main-header .banner {
+    max-height: 100%;
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: 200px;
+    z-index: -1;
+}
+
+.content {
+    color: aliceblue;
+    margin: 20px;
+    font-family: "Lato", Tofu;
+    font-weight: 200;
+    font-size: 55px;
+}
+
+.inline {
+    display: flex;
+    margin: 5px;
+}
+
+#mainframe {
+    border-radius: 5px;
+}
+
+#blockeditor {
+    display: none;
+    width: 65%;
+    background-color: rgb(216, 216, 216);
+}
+
+#tutorialsection {
+    float: right;
+}
+
+#blocks {
+    width: 35%;
+    background-color: rgb(50, 50, 50);
+}
+
+.buttontab {
+    width: 50%;
+    height: auto;
+}
+
+.buttonblock {
+    width: 100%;
+    height: auto;
+}
+
+#blocktabs {
+    display: flex;
+    align-items: flex-start;
+}
+
+/* canvas {
+    width: 65%;
+    height: 600px;
+} */
+
+.editor {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    border-color: black;
+    background-color: lightgray;
+    width: 100%;
+}
+
+#exportCode {
+    width: 100%;
+    text-align: center;
+    background-color: cornflowerblue;
+}
+
+#kahootframe {
+    width: 100%;
+    display: none;
+}

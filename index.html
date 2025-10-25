@@ -1,5 +1,83 @@
+<!DOCTYPE html>
 <html>
+<head>
+<title>Electronics with Wokwi</title>
+<link href='https://fonts.googleapis.com/css?family=Lato:wght@200' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Montserrat:wght@400' rel='stylesheet'>
+
+<!-- Load Blockly core -->
+<script src="https://unpkg.com/blockly/blockly_compressed.js"></script>
+<!-- Load the default blocks -->
+<script src="https://unpkg.com/blockly/blocks_compressed.js"></script>
+<!-- Load a generator -->
+<script src="https://unpkg.com/blockly/python_compressed"></script>
+<!-- Load a message file -->
+<script src="https://unpkg.com/blockly/msg/en.js"></script>
+
+<link type="text/css" rel="stylesheet" href="css/style.css"/>
+</head>
 <body>
-<p>Test</p>
+    <header id="main-header">
+        
+        <!-- <img class="banner" src="https://ssl.gstatic.com/atari/images/simple-header-blended-small.png" /> -->
+        <div class="content">
+            
+            <span>Programming with <i>Wokwi</i></span>
+            <hr>
+        </div>
+    </header>
+    <div class="body-content">
+        
+        <p>Please sign in using credidentials provided by your instructor.</p>
+        <div id="formdiv">
+            <form>
+                <input type="text" placeholder="Enter your access code here" id="accesscode">
+                <input type="text" placeholder="Enter your username here" id="username">
+                <button type="button" onclick="setCredCookies();">Submit credidentials</button>
+            </form>
+        </div>
+        <div id="main-content" style="display: none;">
+            <br>
+            <button type="button" id="codeswitch" onclick="toggleblocks();">Toggle blocks coding mode window</button>
+            <button type="button" id="openkahoot" onclick="togglekahoot();">Toggle Kahoot! Window</button>
+            <br>
+            <br>
+            <div class="inline">
+                <iframe src="https://wokwi.com/projects/new/micropython-pi-pico" height="600" width="60%" title="Wokwi" id="mainframe"></iframe>
+                
+                <div id="blockeditor" height="600" width="65%">
+                    
+                    <xml id="toolbox" style="display: none">
+                        <category name="Basic" colour="#3250ff">
+                        <block type="on_start"></block>
+                        <block type="print"></block>
+                        <block type="machinePin"></block>
+                        <block type="timewait"></block>
+                        <block type="controls_whileUntil"></block>
+                        <block type="logic_compare"></block>
+                        </category>
+                        <category name="Advanced" colour="#ffb432">
+                        <block type="controls_if"></block>
+                        <block type="logic_boolean"></block>
+                        <block type="math_number"></block>
+                        <block type="text"></block>
+                        </category>
+                    </xml>
+
+                    <div id="blockDiv" style="height: 500px; width: 100%; flex-grow: 1;"><button onclick="copyContent(compileCode());" id="exportCode">Export code to clipboard</button></div>
+
+                </div>
+                <iframe src="https://www.kahoot.it/" style="height: 600px;" id="kahootframe"></iframe>
+                <div id="tutorialsection" style="background-color: gray; height: 600px; width: 40%; margin-left: 5px">
+                    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSvPYODoyG3JGXdL7RWmNiJ4JHvqXNqWnD9rpihkuGpDhmG317JraF9rGvK-xMW8EUsVgXLXOsGRI8e/pubembed?start=false&loop=false&delayms=6000000" frameborder="0" style="width: 100%; height: 100%;"></iframe>
+                </div>
+            </div>
+        </div>
+            
+
+    </div>
+    </div>
+    
+<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
