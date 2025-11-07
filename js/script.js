@@ -47,7 +47,7 @@ function isDevToolsOpenByTiming() {
 
 // Example usage:
 if (isDevToolsOpenByTiming()) {
-  // document.getElementsByClassName("body-content")[0].innerHTML = "<h1>Hey, you there. You know exactly what you\'re doing. But guess who also knows? Me!</h1>";
+  document.getElementsByClassName("body-content")[0].innerHTML = "<h1>Hey, you there. You know exactly what you\'re doing. But guess who also knows? Me!</h1>";
 } else {
   console.log("Developer tools are likely closed (timing method).");
 }
@@ -329,3 +329,4 @@ fetch(url, {
   });
 
 });
+
