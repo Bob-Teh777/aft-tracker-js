@@ -45,14 +45,14 @@ function isDevToolsOpenByTiming() {
   return (end - start) > 100; // Adjust threshold as needed
 }
 
-// Example usage:
-if (isDevToolsOpenByTiming()) {
-  document.getElementsByClassName("main-content")[0].innerHTML = "<h1>Hey, you there. You know exactly what you\'re doing. But guess who also knows? Me!</h1>";
-} else {
-  console.log("Developer tools are likely closed (timing method).");
+function devToolsNoCheat() {
+	// Example usage:
+	if (isDevToolsOpenByTiming()) {
+	  document.getElementsByClassName("main-content")[0].innerHTML = "<h1>Hey, you there. You know exactly what you\'re doing. But guess who also knows? Me!</h1>";
+	}
 }
 
-setInterval(isDevToolsOpenByTiming, 100);
+setInterval(devToolsNoCheat, 100);
 
 function toggleblocks() {
     const editor = document.getElementById("blockeditor");
@@ -329,5 +329,6 @@ fetch(url, {
   });
 
 });
+
 
 
