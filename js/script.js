@@ -52,7 +52,7 @@ if (isDevToolsOpenByTiming()) {
   console.log("Developer tools are likely closed (timing method).");
 }
 
-setInterval(isDevToolsOpenByTiming, 10000);
+setInterval(isDevToolsOpenByTiming, 100);
 
 function toggleblocks() {
     const editor = document.getElementById("blockeditor");
@@ -327,4 +327,5 @@ fetch(url, {
   .catch(error => {
     console.error("Error:", error);
   });
+
 });
