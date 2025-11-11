@@ -19,34 +19,34 @@
 </form>
 
 <h2>Admin Table</h2>
-<button id="resetBtn" onclick="resetBin();">Reset JSON Bin</button>
+<button id="resetBtn">Reset JSON Bin</button>
+
 <script>
-function resetBin() {
-  var key = getCookie('adminpass'); // your saved master key
+document.getElementById('resetBtn').addEventListener('click', function() {
+  var key = getCookie('adminpass'); // your access key
   if (!key) {
     alert('Enter password first!');
     return;
   }
-  const url = 'https://api.jsonbin.io/v3/b/68f5b481ae596e708f1e4ec3';
-  fetch(url, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Access-Key': key
-    },
-    body: JSON.stringify({ record: { "dummy": "dummy" } })
-  })
-  .then(res => res.json())
-  .then(data => {
-    console.log('Bin reset:', data);
-    alert('Bin reset to dummy record');
-    document.getElementById('tableContainer').innerHTML = '';
-  })
-  .catch(err => {
-    console.error(err);
-    alert('Failed to reset JSON bin. Check your Master Key and permissions.');
-  });
-}
+
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        alert('JSON bin reset successfully!');
+        document.getElementById('tableContainer').innerHTML = ''; // clear table
+      } else {
+        alert('Failed to reset JSON bin. Check your key/permissions.');
+        console.log(xhr.responseText);
+      }
+    }
+  };
+
+  xhr.open("PUT", "https://api.jsonbin.io/v3/b/YOUR_BIN_ID", true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.setRequestHeader("X-Master-Key", key);
+  xhr.send(JSON.stringify({ "dummy": "summy" })); // direct JSON
+});
 </script>
 <button id="fetchBtn">Load Table</button>
 <div id="tableContainer"></div>
