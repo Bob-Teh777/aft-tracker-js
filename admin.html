@@ -27,12 +27,12 @@ function resetBin() {
     alert('Enter password first!');
     return;
   }
-
-  fetch('https://api.jsonbin.io/v3/b/YOUR_BIN_ID', {
+  const url = 'https://api.jsonbin.io/v3/b/68f5b481ae596e708f1e4ec3';
+  fetch(url, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
-      'X-Master-Key': key
+      'X-Access-Key': key
     },
     body: JSON.stringify({ record: { "dummy": "dummy" } })
   })
