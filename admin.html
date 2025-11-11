@@ -20,40 +20,36 @@
 
 <h2>Admin Table</h2>
 <button id="resetBtn">Reset JSON Bin</button>
-
 <script>
-document.getElementById('resetBtn').addEventListener('click', function() {
-  var key = getCookie('adminpass');
+function resetBin() {
+  var key = getCookie('adminpass'); // your saved master key
   if (!key) {
     alert('Enter password first!');
     return;
   }
 
-  // Replace YOUR_BIN_ID with your jsonbin.io Bin ID
-  var url = 'https://api.jsonbin.io/v3/b/68f5b481ae596e708f1e4ec3';
-  
-  fetch(url, {
+  fetch('https://api.jsonbin.io/v3/b/YOUR_BIN_ID', {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
       'X-Master-Key': key
     },
-    body: JSON.stringify({ "record" : { "dummy": "dummy" }}) // reset to empty object
+    body: JSON.stringify({ record: { "dummy": "dummy" } })
   })
-  .then(res => {
-    if (res.ok) {
-      alert('JSON bin reset successfully!');
-      document.getElementById('tableContainer').innerHTML = ''; // clear table display
-    } else {
-      alert('Failed to reset JSON bin.');
-    }
+  .then(res => res.json())
+  .then(data => {
+    console.log('Bin reset:', data);
+    alert('Bin reset to dummy record');
+    document.getElementById('tableContainer').innerHTML = '';
   })
-  .catch(err => console.log(err));
-});
+  .catch(err => {
+    console.error(err);
+    alert('Failed to reset JSON bin. Check your Master Key and permissions.');
+  });
+}
 </script>
 <button id="fetchBtn">Load Table</button>
 <div id="tableContainer"></div>
-
 <script>
 // --- Cookie functions ---
 function setCookie(name, value, days) {
