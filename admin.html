@@ -1,4 +1,98 @@
-
+<!DOCTYPE html>
 <html>
+<head>
+  <title>Admin Page</title>
+  <style>
+    table { border-collapse: collapse; text-align: center; width: 80%; margin-top: 20px; }
+    th, td { padding: 6px; border: 1px solid #000; }
+    th { background: #eee; }
+    .active { background: #c8f7c5; }
+    .inactive { background: #f7c5c5; }
+  </style>
+</head>
+<body>
 
+<h2>Admin Login</h2>
+<form id="passForm">
+  <label>Password: <input type="password" id="adminPassword"></label>
+  <button type="submit">Save Password</button>
+</form>
+
+<h2>Admin Table</h2>
+<div id="tableContainer"></div>
+
+<script>
+// --- Cookie functions ---
+function setCookie(name, value, days) {
+  var expires = "";
+  if (days) {
+    var d = new Date();
+    d.setTime(d.getTime() + (days*24*60*60*1000));
+    expires = "; expires=" + d.toUTCString();
+  }
+  document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/";
+}
+
+function getCookie(name) {
+  var parts = document.cookie.split(';');
+  for (var i=0; i<parts.length; i++) {
+    var c = parts[i].trim();
+    if (c.indexOf(name + "=") === 0) return decodeURIComponent(c.substring(name.length+1));
+  }
+  return null;
+}
+
+// --- Password form ---
+var form = document.getElementById('passForm');
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  var val = document.getElementById('adminPassword').value;
+  setCookie('adminpass', val, 7); // saves for 7 days
+  alert('Password saved in cookie!');
+});
+
+// --- Admin table ---
+function showPeople(jsonText) {
+  var data = JSON.parse(jsonText);
+  var container = document.getElementById('tableContainer');
+  container.innerHTML = '';
+
+  var table = document.createElement('table');
+
+  // header
+  var header = document.createElement('tr');
+  ['Name','Status','Last Change'].forEach(function(h){
+    var th = document.createElement('th');
+    th.textContent = h;
+    header.appendChild(th);
+  });
+  table.appendChild(header);
+
+  // rows
+  for (var name in data) {
+    var val = data[name];
+    var active = val[0] === 'T';
+    var t = parseInt(val.slice(1), 10);
+    var time = new Date(t*1000).toLocaleString();
+
+    var tr = document.createElement('tr');
+    tr.className = active ? 'active' : 'inactive';
+
+    [name, active?'Active':'Inactive', time].forEach(function(x){
+      var td = document.createElement('td');
+      td.textContent = x;
+      tr.appendChild(td);
+    });
+    table.appendChild(tr);
+  }
+
+  container.appendChild(table);
+}
+
+// --- Example JSON data ---
+var jsonData = '{"Alice":"T1731379000","Bob":"F1731360000","Charlie":"T1731385000"}';
+showPeople(jsonData);
+</script>
+
+</body>
 </html>
