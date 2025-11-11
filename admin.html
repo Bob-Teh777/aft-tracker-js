@@ -19,6 +19,7 @@
 </form>
 
 <h2>Admin Table</h2>
+<button id="fetchBtn">Load Table</button>
 <div id="tableContainer"></div>
 
 <script>
@@ -47,13 +48,12 @@ var form = document.getElementById('passForm');
 form.addEventListener('submit', function(e) {
   e.preventDefault();
   var val = document.getElementById('adminPassword').value;
-  setCookie('adminpass', val, 7); // saves for 7 days
-  alert('Password saved in cookie!');
+  setCookie('adminpass', val, 7); // save for 7 days
+  alert('Password saved!');
 });
 
-// --- Admin table ---
-function showPeople(jsonText) {
-  var data = JSON.parse(jsonText);
+// --- Admin table display ---
+function showPeople(data) {
   var container = document.getElementById('tableContainer');
   container.innerHTML = '';
 
@@ -89,9 +89,31 @@ function showPeople(jsonText) {
   container.appendChild(table);
 }
 
-// --- Example JSON data ---
-var jsonData = '{"Alice":"T1731379000","Bob":"F1731360000","Charlie":"T1731385000"}';
-showPeople(jsonData);
+// --- Fetch JSON from jsonbin.io ---
+function fetchJSONAndShow() {
+  var key = getCookie('adminpass');
+  if (!key) {
+    alert('Please enter a password first.');
+    return;
+  }
+
+  // Replace YOUR_BIN_ID with your jsonbin.io Bin ID
+  var url = 'https://api.jsonbin.io/v3/b/YOUR_BIN_ID/latest';
+  fetch(url, {
+    headers: { 'X-Master-Key': key }
+  })
+  .then(res => res.json())
+  .then(res => {
+    showPeople(res.record);
+  })
+  .catch(err => {
+    alert('Failed to fetch JSON. Check password/key.');
+    console.log(err);
+  });
+}
+
+// --- Button press to load table ---
+document.getElementById('fetchBtn').addEventListener('click', fetchJSONAndShow);
 </script>
 
 </body>
