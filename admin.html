@@ -44,7 +44,7 @@ document.getElementById('resetBtn').addEventListener('click', function() {
 
   xhr.open("PUT", "https://api.jsonbin.io/v3/b/YOUR_BIN_ID", true);
   xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.setRequestHeader("X-Master-Key", key);
+  xhr.setRequestHeader("X-Access-Key", key);
   xhr.send(JSON.stringify({ "dummy": "summy" })); // direct JSON
 });
 </script>
