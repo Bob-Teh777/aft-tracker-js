@@ -38,7 +38,7 @@ document.getElementById('resetBtn').addEventListener('click', function() {
       'Content-Type': 'application/json',
       'X-Master-Key': key
     },
-    body: JSON.stringify({}) // reset to empty object
+    body: JSON.stringify({ "dummy": "dummy" }) // reset to empty object
   })
   .then(res => {
     if (res.ok) {
